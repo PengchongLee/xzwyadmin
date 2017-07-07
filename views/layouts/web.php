@@ -39,7 +39,7 @@ WebAsset::register( $this );
     <li><a href="<?= UrlService::buildWwwUrl('/company/add') ?>" ><span class=""></span>网站设置</a></li>
     <li><a href="pass.html" ><span class=""></span>修改密码</a></li>
     <li><a href="page.html" ><span class=""></span>导航管理</a></li>  
-    <li><a href="adv.html" ><span class=""></span>首页轮播</a></li>   
+    <li><a href="<?= UrlService::buildWwwUrl('/carouselimg/list') ?>" ><span class=""></span>首页轮播</a></li>   
     <li><a href="book.html" ><span class=""></span>在线报名</a></li>     
   </ul>   
   <h2><span class="icon-pencil-square-o"></span>文章管理</h2>
