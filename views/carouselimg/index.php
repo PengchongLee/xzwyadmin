@@ -8,7 +8,7 @@ $upload_config = \Yii::$app->params['upload']."/";
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder">轮播图管理</strong></div>
     <table class="table table-hover text-center">
-      <tr>
+      <tr id="tr">
         <th width="100" style="text-align:left; padding-left:20px;">ID</th>
         <th>图片</th>
         <th>属性</th>
@@ -17,7 +17,7 @@ $upload_config = \Yii::$app->params['upload']."/";
       </tr>
       <volist name="list" id="vo">
       <?php foreach ($data as $key => $val) { ?>
-        <tr id="tr">
+        <tr >
           <td style="text-align:left; padding-left:20px;">
            <?php echo $val['pic_id'] ?></td>
           <td width="10%"><img src="<?php echo $domain_config.$upload_config.$val['pic_link'] ?>"  width="100" height="80" /></td>
@@ -68,12 +68,12 @@ $upload_config = \Yii::$app->params['upload']."/";
           
           <label class="button active">
                 <span class=""></span>         
-              <input name="isshow" value="1" type="radio" >主轮播            
+              <input type="radio" name="isshow" value="1" >主轮播            
           </label>             
         
           <label class="button active">
               <span class=""></span>             
-              <input name="isshow" value="0"  type="radio" >局部轮播
+              <input type="radio"  value="0" name="isshow" >局部轮播
           </label>         
            </div>       
         </div>
@@ -126,9 +126,9 @@ eventBind:function(){
     })
 
     $(".active input[name=isshow]").click(function(){
-         $(this).prop('checked',true);
-         $(".active input[name=isshow]").prev().removeClass('icon-check');
-         $(".active input[name=isshow]:checked").prev().addClass('icon-check'); 
+         $(".icon-check").removeClass('icon-check');
+         $(this).prop('checked',true); 
+         $(this).prev().addClass('icon-check'); 
     })
 
     $(".icon-check-square-o").on('click',function(){
@@ -157,14 +157,13 @@ eventBind:function(){
                  $("#addimg").html("");
                  var str = "";
                  str+="<tr>";
-                 str+='<td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id" value="'+res+'" />'+res+'</td>';
-                 str+='<td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>';
+                 str+='<td style="text-align:left; padding-left:20px;">'+res+'</td>';
                  str+='<td width="10%"><img src="'+root+path+'"  width="100" height="80" /></td>';
                  str+='<td><font color="#00CC99">'+status+' </font></td>';
                  str+='<td>'+time+'</td>';
                  str+='<td><div class="button-group"> <a class="button border-red del" href="javascript:void(0)"  picid="'+res+'"><span class="icon-trash-o"></span> 删除</a> </div></td>';
                  str+="</tr>";
-                 $("#tr").before(str);
+                 $("#tr").after(str);
                }
              }
         })
