@@ -10,7 +10,6 @@ $upload_config = \Yii::$app->params['upload']."/";
     <table class="table table-hover text-center">
       <tr>
         <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-        <th width="10%">排序</th>
         <th>图片</th>
         <th>属性</th>
         <th width="10%">更新时间</th>
@@ -19,9 +18,8 @@ $upload_config = \Yii::$app->params['upload']."/";
       <volist name="list" id="vo">
       <?php foreach ($data as $key => $val) { ?>
         <tr id="tr">
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="<?= $val['pic_id'] ?>" />
+          <td style="text-align:left; padding-left:20px;">
            <?php echo $val['pic_id'] ?></td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
           <td width="10%"><img src="<?php echo $domain_config.$upload_config.$val['pic_link'] ?>"  width="100" height="80" /></td>
           <td><font color="#00CC99">
           <?php 
@@ -36,15 +34,6 @@ $upload_config = \Yii::$app->params['upload']."/";
           <td><div class="button-group"> <a class="button border-red del" href="javascript:void(0)" picid="<?= $val['pic_id'] ?>"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
         <?php } ?>
-      <tr>
-        <td colspan="8">
-        <div class="pagelist"> <a href="">上一页</a> 
-        <span class="current">1</span><a href="">2</a><a href="">3</a>
-        <a href="">下一页</a>
-        <a href="">尾页</a> 
-        </div>
-        </td>
-      </tr>
     </table>
   </div>
   
