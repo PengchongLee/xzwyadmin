@@ -10,7 +10,8 @@ use yii\log\FileTarget;
 
 class ErrorController extends BaseController
 {
-    // public $layout = "weishop";
+
+    public $layout = "web";
    	
     public function actionError()
   	{  

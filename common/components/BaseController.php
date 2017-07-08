@@ -15,6 +15,11 @@ class BaseController extends Controller
 	 */ 
 	public $enableCsrfValidation  = false;
 
+
+	// 暂时
+	public $layout = "web";
+
+
 	/*
 	 *get方法	
 	 *
