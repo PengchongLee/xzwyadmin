@@ -29,8 +29,6 @@ class UrlService
 	// 	return $domain_config['m'] .$path;
 	// }
 
-
-
 	// 构建官网的链接
 	public static function buildWwwUrl( $path, $params=[] )
 	{
@@ -48,12 +46,15 @@ class UrlService
 	}
 
 	// 图片显示地址
-	public static function buildImgUrl( $bucket, $imagekey )
+
+	public static function buildImgUrl( $imagekey )
 	{
-		$domain_config = \Yii::$app->params['domain'];
+		$domain_config = \Yii::$app->params['www'];
+
 		$upload_config = \Yii::$app->params['upload'];
 		
-		return $domain_config['www'].$upload_config[$bucket].'/'.$imagekey;
+		return $domain_config.$upload_config.'/'.$imagekey;
+
 	}
 
 }
