@@ -3,7 +3,7 @@ namespace app\controllers;
 
 use Yii;
 use app\common\components\BaseController;
-use app\models\Company;
+use app\models\XzwyCompany;
 use \app\common\services\UrlService;
 
 class CompanyController extends BaseController
@@ -26,7 +26,7 @@ class CompanyController extends BaseController
                 'com_logo' => $this->post("com_logo"),
                 'create_time' => date("Y-m-d H:i:s", time())
             );
-            $model = new Company();
+            $model = new XzwyCompany();
             if ($model->load($data, '') && $model->save()) {
                 $arr['error'] = '1';
                 $arr['content'] = $data;
@@ -57,13 +57,13 @@ class CompanyController extends BaseController
     }
     public function actionShow()
     {
-        $data = Company::find()->asArray()->all();
+        $data = XzwyCompany::find()->asArray()->all();
         return $this->render('show',['data'=>$data]);
     }
     public function actionDel(){
         if ($this->isRequestMethod('get')) {
             $id = $this->get("id");
-            $res = Company::deleteAll(['com_id'=>$id]);
+            $res = XzwyCompany::deleteAll(['com_id'=>$id]);
             if($res){
                 $data['error'] = 1;
             }else{

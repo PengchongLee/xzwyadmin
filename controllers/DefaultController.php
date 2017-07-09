@@ -1,7 +1,8 @@
 <?php 
 namespace app\controllers;
 use app\common\components\BaseController;
-use app\models\Company;
+
+use app\models\XzwyCompany;
 
 class DefaultController extends BaseController
 {
@@ -9,8 +10,10 @@ class DefaultController extends BaseController
 
 	public function actionIndex()
 	{
-        $data = Company::find()->orderBy("create_time DESC")->asarray()->one();
+
+        $data = XzwyCompany::find()->orderBy("create_time DESC")->asarray()->one();
 		return $this->render( "index" ,['data'=>$data]);
+
 	}
 }
 
