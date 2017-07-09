@@ -11,7 +11,7 @@ class ArticleController extends BaseController
 	public function actionAdd()
 	{	
 
-		if( $this->post() )
+		if( $this->isRequestMethod('get') )
 		{	
 			$nav_info = XzwyNav::find()->all();
 			
