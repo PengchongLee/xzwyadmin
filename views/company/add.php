@@ -121,6 +121,16 @@ WebAsset::register( $this );
 </body></html>
 <script>
     $(function(){
+        var check = {
+            check_name:false,
+            check_tel:false,
+            check_address:false,
+            check_intro:false,
+            check_fax:false,
+            check_account:false,
+            check_email:false,
+            check_web:false
+        }
         //表单验证
         $("#com_name").blur(function(){
             var com_name = $(this).val();
@@ -128,10 +138,12 @@ WebAsset::register( $this );
             var reg = /([\u4e00-\u9fa5])|([a-zA-Z])/;
             if(com_name == ''){
                 $(this).after("<span style='color:red;'>公司名称不能为空</span>");
-                return false;
+                check.check_name = false;
             }else if( !reg.test(com_name) ){
                 $(this).after("<span style='color:red;'>请输入汉字或英文</span>");
-                return false;
+                check.check_name = false;
+            }else{
+                check.check_name = true;
             }
         })
 
@@ -141,10 +153,12 @@ WebAsset::register( $this );
             var reg = /^([\u4e00-\u9fa5])|([0-9])|([a-zA-Z])$/;
             if(com_address == ''){
                 $(this).after("<span style='color:red;'>公司地址不能为空</span>");
-                return false;
+                check.check_address = false;
             }else if( !reg.test(com_address) ){
                 $(this).after("<span style='color:red;'>请输入汉字或数字</span>");
-                return false;
+                check.check_address = false;
+            }else{
+                check.check_address = true;
             }
         })
 
@@ -154,10 +168,12 @@ WebAsset::register( $this );
             var reg = /^0\d{2,3}-?\d{7,8}$/;
             if(com_tel == ''){
                 $(this).after("<span style='color:red;'>公司电话不能为空</span>");
-                return false;
+                check.check_tel = false;
             }else if( !reg.test(com_tel) ){
-                $(this).after("<span style='color:red;'>电话格式不正确</span>");
-                return false;
+                $(this).after("<span style='color:red;'>电话格式不正确,正确格式0**-*******</span>");
+                check.check_tel = false;
+            }else{
+                check.check_tel = true;
             }
         })
 
@@ -167,10 +183,12 @@ WebAsset::register( $this );
             var reg = /^(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])$/;
             if(web_address == ''){
                 $(this).after("<span style='color:red;'>公司网址不能为空</span>");
-                return false;
+                check.check_web = false;
             }else if( !reg.test(web_address) ){
-                $(this).after("<span style='color:red;'>网址格式不正确</span>");
-                return false;
+                $(this).after("<span style='color:red;'>网址格式不正确,应该以http,ftp,https开头</span>");
+                check.check_web = false;
+            }else{
+                check.check_web = true;
             }
         })
 
@@ -180,10 +198,12 @@ WebAsset::register( $this );
             var reg = /^[\u4e00-\u9fa5]{3,500}$/;
             if(com_intro == ''){
                 $(this).after("<span style='color:red;'>公司简介不能为空</span>");
-                return false;
+                check.check_intro = false;
             }else if( !reg.test(com_intro) ){
                 $(this).after("<span style='color:red;'>公司简介不得少于50个汉字</span>");
-                return false;
+                check.check_intro = false;
+            }else{
+                check.check_intro = true;
             }
         })
 
@@ -193,10 +213,12 @@ WebAsset::register( $this );
             var reg = /^0\d{2,3}-?\d{7,8}$/;
             if(com_fax == ''){
                 $(this).after("<span style='color:red;'>公司传真不能为空</span>");
-                return false;
+                check.check_fax = false;
             }else if( !reg.test(com_fax) ){
-                $(this).after("<span style='color:red;'>公司传真格式错误</span>");
-                return false;
+                $(this).after("<span style='color:red;'>公司传真格式错误，正确格式0**-*******</span>");
+                check.check_fax = false;
+            }else{
+                check.check_fax = true;
             }
         })
 
@@ -206,10 +228,12 @@ WebAsset::register( $this );
             var reg = /^(\d{16}|\d{19})$/;
             if(com_account == ''){
                 $(this).after("<span style='color:red;'>公司账户不能为空</span>");
-                return false;
+                check.check_account = false;
             }else if( !reg.test(com_account) ){
-                $(this).after("<span style='color:red;'>公司账户格式错误</span>");
-                return false;
+                $(this).after("<span style='color:red;'>公司账户格式错误，应该为16或19位纯数字</span>");
+                check.check_account = false;
+            }else{
+                check.check_account = true;
             }
         })
 
@@ -219,10 +243,12 @@ WebAsset::register( $this );
             var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
             if(com_email == ''){
                 $(this).after("<span style='color:red;'>公司邮箱不能为空</span>");
-                return false;
+                check.check_email = false;
             }else if( !reg.test(com_email) ){
                 $(this).after("<span style='color:red;'>公司邮箱格式错误</span>");
-                return false;
+                check.check_email = false;
+            }else{
+                check.check_email = true;
             }
         })
 
@@ -249,39 +275,52 @@ WebAsset::register( $this );
         //表单提交
         $("#submit").click(function(){
 
-            var com_name = $("#com_name").val();
-            var com_tel = $("#com_tel").val();
-            var com_email = $("#com_email").val();
-            var com_address = $("#com_address").val();
-            var com_account = $("#com_account").val();
-            var com_fax = $("#com_fax").val();
-            var com_intro = $("#com_intro").val();
-            var web_address = $("#web_address").val();
-            var com_logo = $("#logo").val();
+            $("#com_name").trigger("blur");
+            $("#com_tel").trigger("blur");
+            $("#com_email").trigger("blur");
+            $("#com_address").trigger("blur");
+            $("#com_account").trigger("blur");
+            $("#com_fax").trigger("blur");
+            $("#web_address").trigger("blur");
+            $("#com_intro").trigger("blur");
+            if(check.check_name && check.check_address && check.check_account && check.check_email && check.check_fax && check.check_intro && check.check_tel && check.check_web){
 
-            $.ajax({
-                type:"post",
-                url:"<?= UrlService::buildWwwUrl('/company/add')?>",
-                data:{
-                    'com_name':com_name,
-                    'com_tel':com_tel,
-                    'com_email':com_email,
-                    'com_address':com_address,
-                    'com_account':com_account,
-                    'com_fax':com_fax,
-                    'com_intro':com_intro,
-                    'web_address':web_address,
-                    'com_logo':com_logo
-                },
-                dataType:"json",
-                success:function(data){
-                    if(data.error==1){
-                        window.location.href = "<?= UrlService::buildWwwUrl('/company/show')?>";
-                    }else{
-                        alert(data.msg)
+                var com_name = $("#com_name").val();
+                var com_tel = $("#com_tel").val();
+                var com_email = $("#com_email").val();
+                var com_address = $("#com_address").val();
+                var com_account = $("#com_account").val();
+                var com_fax = $("#com_fax").val();
+                var com_intro = $("#com_intro").val();
+                var web_address = $("#web_address").val();
+                var com_logo = $("#logo").val();
+
+                $.ajax({
+                    type:"post",
+                    url:"<?= UrlService::buildWwwUrl('/company/add')?>",
+                    data:{
+                        'com_name':com_name,
+                        'com_tel':com_tel,
+                        'com_email':com_email,
+                        'com_address':com_address,
+                        'com_account':com_account,
+                        'com_fax':com_fax,
+                        'com_intro':com_intro,
+                        'web_address':web_address,
+                        'com_logo':com_logo
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data.error==1){
+                            window.location.href = "<?= UrlService::buildWwwUrl('/company/show')?>";
+                        }else{
+                            alert(data.msg)
+                        }
                     }
-                }
-            })
+                })
+            }else{
+                return false;
+            }
         })
 
     })
