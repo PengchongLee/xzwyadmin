@@ -47,7 +47,16 @@ WebAsset::register( $this );
                 <td><?= $val['com_email']?></td>
                 <td><?= $val['com_address']?></td>
                 <td><?= $val['web_address']?></td>
-                <td><?= $val['com_intro']?></td>
+                <td>
+                    <?php
+                        if(strlen($val['com_intro'])>15){
+                            $address = substr($val['com_intro'],0,15);
+                        }else{
+                            $address = $val['com_intro'];
+                        }
+                    echo $address;
+                    ?>
+                </td>
                 <td><?= $val['create_time']?></td>
                 <td><div class="button-group"> <a class="button border-red" href="javascript:void(0)" onclick="del(<?= $val['com_id']?>,this)"><span class="icon-trash-o"></span> 删除</a> </div></td>
             </tr>
