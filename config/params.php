@@ -3,6 +3,6 @@
 return [
     'adminEmail' => 'admin@example.com',
 
-    'www'	=>	'http://www.yfmans.com',
+    'www'	=>	'http://lpc03cadmin.com/',
     'upload' => '/upload'
 ];
