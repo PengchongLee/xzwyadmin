@@ -33,12 +33,13 @@ WebAsset::register( $this );
     <div class="head-l"><a class="button button-little bg-green" href="" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="login.html"><span class="icon-power-off"></span> 退出登录</a> </div>
 </div>
 <div class="leftnav">
+
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
     <h2 ><span class="icon-user"></span>基本设置</h2>
     <ul style="display:block">
         <li><a href="<?= UrlService::buildWwwUrl('/company/add') ?>" ><span class=""></span>网站设置</a></li>
         <li><a href="pass.html" ><span class=""></span>修改密码</a></li>
-        <li><a href="page.html" ><span class=""></span>导航管理</a></li>
+        <li><a href="<?= UrlService::buildWwwUrl('/nav/show') ?>" ><span class=""></span>导航管理</a></li>
         <li><a href="<?= UrlService::buildWwwUrl('/carouselimg/list') ?>" ><span class=""></span>首页轮播</a></li>
         <li><a href="<?= UrlService::buildWwwUrl('/online/index') ?>" ><span class=""></span>在线报名</a></li>
     </ul>
