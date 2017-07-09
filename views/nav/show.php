@@ -1,5 +1,6 @@
 <?php 	
 use \app\common\services\UrlService;
+use yii\widgets\LinkPager;
 
  ?>
 
@@ -28,7 +29,7 @@ use \app\common\services\UrlService;
         <th>操作</th>       
       </tr> 
 	<!-- 循环展示数据 begin -->
-      <?php foreach ($data as $k => $v) {?>     
+      <?php foreach ($model as $k => $v) {?>     
         <tr name="test">
           <td><input type="checkbox" name="id[]" value="<?= $v['nav_id'];?>" class="ids" /></td>
             <td><?= $v['nav_id'];?></td>
@@ -52,8 +53,8 @@ use \app\common\services\UrlService;
        <?php };?>
 		<!-- 循环展示数据 end -->
 	
-      <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+      <tr> 
+        <td colspan="8"> <?= LinkPager::widget(['pagination' => $pages]); ?></td>
       </tr>
     </table>
   </div>
