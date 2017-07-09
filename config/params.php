@@ -4,7 +4,7 @@ return [
     'adminEmail' => 'admin@example.com',
 
 
-    'www'	=>	'http://www.ayfmanss.com',
+    'www'	=>	'http://www.ayfmansss.com',
 
     'upload' => '/upload'
 
