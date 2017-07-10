@@ -12,7 +12,7 @@ use yii\widgets\LinkPager;
         <li>
           <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
           <button type="submit" class="button border-red" id="but"><span class="icon-trash-o"></span> 批量删除</button>
-          <button type="submit" class="button border-green" id="but"> <a href="<?= UrlService::buildWwwUrl('nav/add') ?>">添加</a></button>
+          <a href="<?= UrlService::buildWwwUrl('nav/add') ?>" class="button border-green">添加</a>
         </li>
       </ul>
     </div>
