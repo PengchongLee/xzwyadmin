@@ -85,7 +85,7 @@ class NavController extends BaseController
   		//接值
   		$ids  = trim( yii::$app->request->get('arr') ) ;
 
-		$res  = XzwyNav::deleteAll( ['in', 'nav_id', $ids] );
+		$res = XzwyNav::deleteAll("nav_id in($ids)");
 
 		//判断是否删除成功
 		if ( $res ) 
