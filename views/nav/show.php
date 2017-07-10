@@ -42,7 +42,9 @@ use yii\widgets\LinkPager;
           <td><?php if( $v['nav_type'] == 0 ){echo "头部导航";}else{echo "其他导航";}?></td>  
           <td><?= $v['create_time'];?></td>         
           <td><?=  empty($v['update_time']) ? $v['update_time'] : '未修改过';?></td>
-          <td><?=  $v['nav_link'];?></td>
+          <td>
+          		<span onclick='show1(this)' ><?=  $v['nav_link'];?></span>
+          </td>
           <td>
           		<div class="button-group" > 
           		<a class="button border-red" href="javascript:void(0)" onclick="return del(<?= $v['nav_id'];?>)">
@@ -163,5 +165,28 @@ use yii\widgets\LinkPager;
 				};		
 			});
 		}
+	}
+
+// (导航链接)即点即改
+	function show1(ts){
+		var s=$(ts).html();
+		var ss=$(ts).parent();
+		ss.html("<input type='text' class='sp1' old='"+s+"' opt='"+<?= $v['nav_id'];?>+"' onblur='update1(this)'value='"+s+"' />");
+	}
+
+	function update1(ts){
+		var old = $(ts).attr('old');
+		var val = $(ts).val();
+		var id  = $(ts).attr('opt');
+		url="<?= UrlService::buildWwwUrl('nav/setlink') ?>";
+		data={'val':val,'id':id}
+		$.get(url,data,function(msg){
+			if (msg==1) {
+				$(ts).parent().html(val);
+			}else{
+				alert('修改失败');
+				$(ts).parent().html(old);
+			}		
+		});
 	}
 </script>
