@@ -132,6 +132,24 @@ class NavController extends BaseController
  			echo 0;
  		}
   	}
+	// 导航链接修改
+    public function actionSetlink()
+    {
+      // 接值
+      $nav_link = trim( yii::$app->request->get('val') );
+      $nav_id    = intval( yii::$app->request->get('id') );
+
+      // 修改
+      $res = yii::$app->db->createCommand()->update('xzwy_nav',
+                  ["nav_link"=>$nav_link,'update_time'=>date('Y-m-d h:i:s')],
+                  "nav_id=$nav_id")->execute();
+      if ( $res ) {
+        echo 1;
+      }else{
+        echo 0;
+      }
+    }
+	
   	
 
 
