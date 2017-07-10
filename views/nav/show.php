@@ -171,7 +171,7 @@ use yii\widgets\LinkPager;
 	function show1(ts){
 		var s=$(ts).html();
 		var ss=$(ts).parent();
-		ss.html("<input type='text' class='sp1' old='"+s+"' opt='"+<?= $v['nav_id'];?>+"' onblur='update1(this)'value='"+s+"' />");
+		ss.html("<input type='text' class='sp1' old='"+s+"' opt='"+<?= @$v['nav_id'];?>+"' onblur='update1(this)'value='"+s+"' />");
 	}
 
 	function update1(ts){
